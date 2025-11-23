@@ -17,9 +17,9 @@ const (
 )
 
 var messageBodyMap = map[MessageType]func() body{
-	TypeInit:     func() body { return &initRequest{} },
-	TypeEcho:     func() body { return &echoRequest{} },
-	TypeGenerate: func() body { return &uniqueIdsRequest{} },
+	TypeInit: func() body { return &initRequest{} },
+	TypeEcho: func() body { return &echoRequest{} },
+	// TypeGenerate: func() body { return &uniqueIdsRequest{} },
 }
 
 // Event
