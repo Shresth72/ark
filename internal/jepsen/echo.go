@@ -26,7 +26,7 @@ func (e echoRequest) intoReply(id int) body {
 	return &echoOkResponse{
 		Type:      "echo_ok",
 		Id:        id,
-		InReplyTo: id,
+		InReplyTo: e.Id,
 		Echo:      e.Echo,
 	}
 }
@@ -48,7 +48,7 @@ func (e *EchoNode) processEvent(input Event, out io.Writer) error {
 	switch msg := input.(type) {
 	case *message:
 		switch msg.Body.(type) {
-		case echoRequest:
+		case *echoRequest:
 			reply := msg.intoReply(&e.id)
 			return reply.send(out)
 		default:

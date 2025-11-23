@@ -12,7 +12,7 @@ type uniqueIdsRequest struct {
 
 type uniqueIdsResponse struct {
 	Type string `json:"type"`
-	Id   int    `json:"id"`
+	Id   int    `json:"msg_id"`
 }
 
 func (uniqueIdsRequest) isBody()  {}
@@ -20,7 +20,7 @@ func (uniqueIdsResponse) isBody() {}
 
 func (u uniqueIdsRequest) intoReply(id int) body {
 	return &uniqueIdsResponse{
-		Type: "generate",
+		Type: "generate_ok",
 		Id:   id,
 	}
 }
@@ -46,7 +46,7 @@ func (u *UniqueIdsNode) processEvent(input Event, out io.Writer) error {
 	switch msg := input.(type) {
 	case *message:
 		switch msg.Body.(type) {
-		case echoRequest:
+		case *uniqueIdsRequest:
 			reply := msg.intoReply(&u.id)
 			return reply.send(out)
 		default:
