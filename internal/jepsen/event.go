@@ -17,9 +17,9 @@ const (
 )
 
 var messageBodyMap = map[MessageType]func() body{
-	TypeInit: func() body { return &initRequest{} },
-	TypeEcho: func() body { return &echoRequest{} },
-	// TypeGenerate: func() body { return &uniqueIdsRequest{} },
+	TypeInit:     func() body { return &initRequest{} },
+	TypeEcho:     func() body { return &echoRequest{} },
+	TypeGenerate: func() body { return &uniqueIdsRequest{} },
 }
 
 // Event
@@ -95,7 +95,7 @@ func (m *message) UnmarshalJSON(data []byte) error {
 	var bodyType struct {
 		Type MessageType `json:"type"`
 	}
-	if err := json.Unmarshal(data, &bodyType); err != nil {
+	if err := json.Unmarshal(aux.Body, &bodyType); err != nil {
 		return err
 	}
 
