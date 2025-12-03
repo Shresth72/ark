@@ -36,3 +36,27 @@ Types of Message Events
   }
 }
 ```
+
+4. Grow Counter
+- Add Counter
+```bash
+{
+  "src": "n1",
+  "dest": "n2",
+  "body": {
+    "type": "add",
+    "delta": 5
+  }
+}
+```
+
+- Read Counter
+```bash
+{
+  "src": "n1",
+  "dest": "n2",
+  "body": {
+    "type": "read"
+  }
+}
+```

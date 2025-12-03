@@ -10,10 +10,12 @@ import (
 
 type EchoCmd struct{}
 type UniqueIdsCmd struct{}
+type GrowCounterCmd struct{}
 
 type Cli struct {
-	Echo      EchoCmd      `cmd:"" help:"Test Echo"`
-	UniqueIds UniqueIdsCmd `cmd:"" help:"Test UniqueIds"`
+	Echo        EchoCmd        `cmd:"" help:"Test Echo"`
+	UniqueIds   UniqueIdsCmd   `cmd:"" help:"Test UniqueIds"`
+	GrowCounter GrowCounterCmd `cmd:"" help:"Test GrowCounter"`
 }
 
 func main() {
@@ -21,8 +23,9 @@ func main() {
 	ctx := kong.Parse(cli)
 
 	handlers := map[string]jepsen.Node{
-		"echo":       &jepsen.EchoNode{},
-		"unique-ids": &jepsen.UniqueIdsNode{},
+		"echo":         &jepsen.EchoNode{},
+		"unique-ids":   &jepsen.UniqueIdsNode{},
+		"grow-counter": &jepsen.GrowCounterNode{},
 	}
 
 	node, ok := handlers[ctx.Command()]

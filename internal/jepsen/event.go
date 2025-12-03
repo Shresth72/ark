@@ -8,18 +8,19 @@ import (
 type MessageType string
 
 const (
-	TypeInit       MessageType = "init"
-	TypeInitOk     MessageType = "init_ok"
-	TypeEcho       MessageType = "echo"
-	TypeEchoOk     MessageType = "echo_ok"
-	TypeGenerate   MessageType = "generate"
-	TypeGenerateOk MessageType = "generate_ok"
+	TypeInit        MessageType = "init"
+	TypeEcho        MessageType = "echo"
+	TypeGenerate    MessageType = "generate"
+	TypeAddCounter  MessageType = "add"
+	TypeReadCounter MessageType = "read"
 )
 
 var messageBodyMap = map[MessageType]func() body{
-	TypeInit:     func() body { return &initRequest{} },
-	TypeEcho:     func() body { return &echoRequest{} },
-	TypeGenerate: func() body { return &uniqueIdsRequest{} },
+	TypeInit:        func() body { return &initRequest{} },
+	TypeEcho:        func() body { return &echoRequest{} },
+	TypeGenerate:    func() body { return &uniqueIdsRequest{} },
+	TypeAddCounter:  func() body { return &addToCounterRequest{} },
+	TypeReadCounter: func() body { return &readCounterRequest{} },
 }
 
 // Event
