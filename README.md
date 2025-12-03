@@ -60,3 +60,47 @@ Types of Message Events
   }
 }
 ```
+
+5. Transaction
+```bash
+{
+  "src": "n3",
+  "dest": "n4",
+  "body": {
+    "type": "txn",
+    "txn": [
+      ["w", 2, 5],
+      ["w", 4, 19],
+      ["r", 2, null]
+    ]
+  }
+}
+```
+
+```bash
+{
+  "src": "n3",
+  "dest": "n4",
+  "body": {
+    "type": "txn",
+    "txn": [
+      ["w", 1, 10],
+      ["w", 2, 5],
+      ["r", 1, null],
+      ["w", 2, 7],
+      ["r", 2, null],
+      ["w", 10, 999],
+      ["r", 10, null],
+      ["r", 3, null],
+      ["w", 3, 42],
+      ["r", 3, null],
+      ["w", 4, 19],
+      ["w", 4, 20],
+      ["r", 4, null],
+      ["w", 100, 500],
+      ["r", 100, null],
+      ["r", 999, null]
+    ]
+  }
+}
+```

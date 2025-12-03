@@ -13,6 +13,7 @@ const (
 	TypeGenerate    MessageType = "generate"
 	TypeAddCounter  MessageType = "add"
 	TypeReadCounter MessageType = "read"
+	TypeTransaction MessageType = "txn"
 )
 
 var messageBodyMap = map[MessageType]func() body{
@@ -21,6 +22,7 @@ var messageBodyMap = map[MessageType]func() body{
 	TypeGenerate:    func() body { return &uniqueIdsRequest{} },
 	TypeAddCounter:  func() body { return &addToCounterRequest{} },
 	TypeReadCounter: func() body { return &readCounterRequest{} },
+	TypeTransaction: func() body { return &transactionRequest{} },
 }
 
 // Event

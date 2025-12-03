@@ -35,7 +35,7 @@ type UniqueIdsNode struct {
 	node string
 }
 
-func (u *UniqueIdsNode) fromInit(init initRequest, tx chan Event) Node {
+func (u UniqueIdsNode) fromInit(init initRequest, tx chan Event) Node {
 	return &UniqueIdsNode{
 		id:   1,
 		node: init.NodeId,

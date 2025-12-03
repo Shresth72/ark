@@ -40,7 +40,7 @@ type EchoNode struct {
 	id int
 }
 
-func (e *EchoNode) fromInit(init initRequest, tx chan Event) Node {
+func (e EchoNode) fromInit(init initRequest, tx chan Event) Node {
 	return &EchoNode{id: 1}
 }
 
