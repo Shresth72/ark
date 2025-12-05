@@ -64,10 +64,10 @@ func (t *TransactionNode) processEvent(input Event, out io.Writer) error {
 			return reply.send(out)
 
 		default:
-			return nil
+			return fmt.Errorf("unexpected message body type: %v", body)
 		}
 	default:
-		return fmt.Errorf("Event type not allowed: %T", input)
+		return fmt.Errorf("Event type not allowed: %v", input)
 	}
 }
 

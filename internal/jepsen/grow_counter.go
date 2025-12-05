@@ -42,7 +42,8 @@ func (a addToCounterResponse) intoReply(id int) body {
 
 func (r readCounterRequest) intoReply(id int) body {
 	return &readCounterResponse{
-		Type: "read_ok",
+		Type:  "read_ok",
+		Value: 0,
 	}
 }
 
@@ -93,9 +94,9 @@ func (g *GrowCounterNode) processEvent(input Event, out io.Writer) error {
 			return reply.send(out)
 
 		default:
-			return nil
+			return fmt.Errorf("unexpected message body type: %v", msg.Body)
 		}
 	default:
-		return fmt.Errorf("Event type not allowed: %T", input)
+		return fmt.Errorf("Event type not allowed: %v", input)
 	}
 }

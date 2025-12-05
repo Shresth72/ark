@@ -56,7 +56,8 @@ func MainLoop(n Node, in io.Reader, out io.Writer) error {
 
 	for event := range tx {
 		if err := node.processEvent(event, lw); err != nil {
-			return fmt.Errorf("failed to process payload: %w", err)
+			fmt.Printf("Failed to process payload: %v\n", err)
+			continue
 		}
 	}
 

@@ -12,12 +12,14 @@ type EchoCmd struct{}
 type UniqueIdsCmd struct{}
 type GrowCounterCmd struct{}
 type TransactionCmd struct{}
+type LogCmd struct{}
 
 type Cli struct {
 	Echo        EchoCmd        `cmd:"" help:"Test Echo"`
 	UniqueIds   UniqueIdsCmd   `cmd:"" help:"Test UniqueIds"`
 	GrowCounter GrowCounterCmd `cmd:"" help:"Test GrowCounter"`
 	Transaction TransactionCmd `cmd:"" help:"Test Transaction"`
+	Log         LogCmd         `cmd:"" help:"Test Log"`
 }
 
 func main() {
@@ -29,6 +31,7 @@ func main() {
 		"unique-ids":   &jepsen.UniqueIdsNode{},
 		"grow-counter": &jepsen.GrowCounterNode{},
 		"transaction":  &jepsen.TransactionNode{},
+		"log":          &jepsen.LogNode{},
 	}
 
 	node, ok := handlers[ctx.Command()]

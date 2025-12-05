@@ -50,9 +50,9 @@ func (u *UniqueIdsNode) processEvent(input Event, out io.Writer) error {
 			reply := msg.intoReply(&u.id)
 			return reply.send(out)
 		default:
-			return nil
+			return fmt.Errorf("unexpected message body type: %v", msg.Body)
 		}
 	default:
-		return fmt.Errorf("Event type not allowed: %T", input)
+		return fmt.Errorf("Event type not allowed: %v", input)
 	}
 }

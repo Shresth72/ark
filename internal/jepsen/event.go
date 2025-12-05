@@ -8,21 +8,33 @@ import (
 type MessageType string
 
 const (
-	TypeInit        MessageType = "init"
-	TypeEcho        MessageType = "echo"
-	TypeGenerate    MessageType = "generate"
+	TypeInit MessageType = "init"
+	TypeEcho MessageType = "echo"
+
+	TypeGenerate MessageType = "generate"
+
 	TypeAddCounter  MessageType = "add"
 	TypeReadCounter MessageType = "read"
+
 	TypeTransaction MessageType = "txn"
+
+	TypeSendLogs            MessageType = "send"
+	TypePollLogs            MessageType = "poll"
+	TypeCommitOffsets       MessageType = "commit_offsets"
+	TypeListCommitedOffsets MessageType = "list_committed_offsets"
 )
 
 var messageBodyMap = map[MessageType]func() body{
-	TypeInit:        func() body { return &initRequest{} },
-	TypeEcho:        func() body { return &echoRequest{} },
-	TypeGenerate:    func() body { return &uniqueIdsRequest{} },
-	TypeAddCounter:  func() body { return &addToCounterRequest{} },
-	TypeReadCounter: func() body { return &readCounterRequest{} },
-	TypeTransaction: func() body { return &transactionRequest{} },
+	TypeInit:                func() body { return &initRequest{} },
+	TypeEcho:                func() body { return &echoRequest{} },
+	TypeGenerate:            func() body { return &uniqueIdsRequest{} },
+	TypeAddCounter:          func() body { return &addToCounterRequest{} },
+	TypeReadCounter:         func() body { return &readCounterRequest{} },
+	TypeTransaction:         func() body { return &transactionRequest{} },
+	TypeSendLogs:            func() body { return &sendLogRequest{} },
+	TypePollLogs:            func() body { return &pollLogRequest{} },
+	TypeCommitOffsets:       func() body { return &commitOffsetsRequest{} },
+	TypeListCommitedOffsets: func() body { return &listCommitedOffsetsRequest{} },
 }
 
 // Event
